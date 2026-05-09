@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://b7joycgm6lby7"]
+
+[ext_resource type="Script" path="res://charger/charger.gd" id="1_rv3ls"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xojj3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_28icj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_heu35"]
+
+[sub_resource type="Gradient" id="Gradient_ibkwi"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sqfd7"]
+gradient = SubResource("Gradient_ibkwi")
+
+[node name="Button" type="Button"]
+offset_right = 16.0
+offset_bottom = 14.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xojj3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_28icj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_heu35")
+text = "cargar"
+icon = SubResource("GradientTexture2D_sqfd7")
+flat = true
+icon_alignment = 1
+script = ExtResource("1_rv3ls")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

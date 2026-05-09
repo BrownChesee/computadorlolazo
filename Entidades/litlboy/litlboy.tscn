@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://jyurfscr22h1"]
+
+[sub_resource type="Gradient" id="Gradient_p8ics"]
+offsets = PackedFloat32Array(0.890323)
+colors = PackedColorArray(0, 1, 1, 0.258824)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7gq2b"]
+gradient = SubResource("Gradient_p8ics")
+
+[node name="Area2D" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(578, 970)
+scale = Vector2(18, 10.125)
+texture = SubResource("GradientTexture2D_7gq2b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

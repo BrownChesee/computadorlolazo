@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://m07arqp4l85x"]
+
+[ext_resource type="Script" path="res://Entidades/molestia/Molestia.gd" id="1_pj3re"]
+
+[sub_resource type="Gradient" id="Gradient_qii7d"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.404821, 0.584441, 0.617538, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3srfg"]
+gradient = SubResource("Gradient_qii7d")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ekr6x"]
+size = Vector2(186, 186)
+
+[node name="Molestia" type="Area2D"]
+position = Vector2(-186, -187)
+scale = Vector2(2, 2)
+script = ExtResource("1_pj3re")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.89844, 2.92188)
+texture = SubResource("GradientTexture2D_3srfg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ekr6x")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

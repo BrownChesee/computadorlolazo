@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://ds5vi3sli7gjg"]
+
+[ext_resource type="PackedScene" uid="uid://cpgdhgy2g2at7" path="res://PantallaPrincipal/pantalla_pricipal.tscn" id="1_hxayl"]
+[ext_resource type="Script" path="res://main/main.gd" id="1_txr34"]
+[ext_resource type="PackedScene" uid="uid://dvuktfxac4o2o" path="res://Entidades/Entidades.tscn" id="2_43el8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vdpei"]
+font_size = 129
+
+[node name="Main" type="Node"]
+process_mode = 1
+script = ExtResource("1_txr34")
+
+[node name="PantallaPricipal" parent="." instance=ExtResource("1_hxayl")]
+
+[node name="Entidades" parent="." instance=ExtResource("2_43el8")]
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.523
+anchor_top = 0.454
+anchor_right = 0.567
+anchor_bottom = 0.554
+offset_left = -52.996
+offset_top = 15.808
+offset_right = -50.684
+offset_bottom = -20.992
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_vdpei")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(576, 324)
+
+[connection signal="perdiste" from="PantallaPricipal" to="." method="perder"]
+[connection signal="perdiste2" from="Entidades" to="." method="perder"]

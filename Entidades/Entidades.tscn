@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://dvuktfxac4o2o"]
+
+[ext_resource type="Script" path="res://Entidades/Entidades.gd" id="1_wf3xq"]
+[ext_resource type="PackedScene" uid="uid://dws0p4dfkgsi" path="res://Entidades/anuncio/anuncio.tscn" id="2_yuxwf"]
+[ext_resource type="PackedScene" uid="uid://cp7iedx6hn8k1" path="res://Entidades/skull.png/skull.tscn" id="3_voa3y"]
+[ext_resource type="PackedScene" uid="uid://m07arqp4l85x" path="res://Entidades/molestia/Molestia.tscn" id="4_86q2q"]
+[ext_resource type="PackedScene" uid="uid://wmhvjps52eyj" path="res://Entidades/wiresea/wiresea.tscn" id="5_2rpee"]
+[ext_resource type="PackedScene" uid="uid://dwyhpx0p5fpxm" path="res://Entidades/malware/malware.tscn" id="5_y56c6"]
+[ext_resource type="PackedScene" uid="uid://oclrcqtmbew2" path="res://Entidades/Taunt/Taunt.tscn" id="6_rb0dh"]
+
+[node name="Entidades" type="Node"]
+script = ExtResource("1_wf3xq")
+anuncio_scene = ExtResource("2_yuxwf")
+skull_scene = ExtResource("3_voa3y")
+taunt_scene = ExtResource("6_rb0dh")
+wiresea_scene = ExtResource("5_2rpee")
+
+[node name="Molestia" parent="." instance=ExtResource("4_86q2q")]
+
+[node name="anuncio" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="skull" type="Timer" parent="."]
+wait_time = 7.0
+one_shot = true
+
+[node name="Node" parent="." instance=ExtResource("5_y56c6")]
+
+[connection signal="timeout" from="anuncio" to="." method="_on_anuncio_timeout"]
+[connection signal="timeout" from="skull" to="." method="_on_skull_timeout"]
+[connection signal="anuncio" from="Node" to="." method="_on_node_anuncio"]
+[connection signal="molestia" from="Node" to="." method="_on_node_molestia"]
+[connection signal="skull" from="Node" to="." method="_on_node_skull"]
+[connection signal="taunt" from="Node" to="." method="_on_node_taunt"]
+[connection signal="wiresea" from="Node" to="." method="_on_node_wiresea"]

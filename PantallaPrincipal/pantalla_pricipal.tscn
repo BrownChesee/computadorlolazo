@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpgdhgy2g2at7"]
+
+[ext_resource type="Script" path="res://PantallaPrincipal/main.gd" id="1_cabl2"]
+[ext_resource type="PackedScene" uid="uid://b7joycgm6lby7" path="res://charger/charger.tscn" id="1_cnn81"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fh2dx"]
+font_size = 64
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[node name="PantallaPricipal" type="Node"]
+script = ExtResource("1_cabl2")
+
+[node name="Button" parent="." instance=ExtResource("1_cnn81")]
+
+[node name="supervivencia" type="Label" parent="."]
+offset_left = 2.0
+offset_top = 556.0
+offset_right = 113.0
+offset_bottom = 647.0
+text = "100"
+label_settings = SubResource("LabelSettings_fh2dx")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="presionado" from="Button" to="." method="_on_button_presionado"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
