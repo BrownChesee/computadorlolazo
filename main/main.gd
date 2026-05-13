@@ -1,5 +1,7 @@
 extends Node
 var cursor = 0
+signal camara_izquierda 
+signal camara_derecha
 
 
 func _ready():
@@ -17,8 +19,10 @@ func _process(delta):
 	var d = Input.is_action_pressed("D")
 	if a:
 		$Camera2D.position.x -= 300 * delta 
+		emit_signal("camara_izquierda")
 	if d:
 		$Camera2D.position.x += 300 * delta
+		emit_signal("camara_derecha")
 	if $Camera2D.position.x > 500:
 		$Camera2D.position.x = 500
 	if $Camera2D.position.x < -500:

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ds5vi3sli7gjg"]
+[gd_scene load_steps=6 format=3 uid="uid://ds5vi3sli7gjg"]
 
 [ext_resource type="PackedScene" uid="uid://cpgdhgy2g2at7" path="res://PantallaPrincipal/pantalla_pricipal.tscn" id="1_hxayl"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_txr34"]
 [ext_resource type="PackedScene" uid="uid://dvuktfxac4o2o" path="res://Entidades/Entidades.tscn" id="2_43el8"]
+[ext_resource type="PackedScene" uid="uid://se8jnx2d6khu" path="res://main/fondo/fondo.tscn" id="4_fdu6n"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vdpei"]
 font_size = 129
@@ -10,6 +11,10 @@ font_size = 129
 [node name="Main" type="Node"]
 process_mode = 1
 script = ExtResource("1_txr34")
+
+[node name="Sprite2D" parent="." instance=ExtResource("4_fdu6n")]
+position = Vector2(576.5, 323.5)
+scale = Vector2(10.275, 10.1719)
 
 [node name="PantallaPricipal" parent="." instance=ExtResource("1_hxayl")]
 
