@@ -1,18 +1,28 @@
 extends Area2D
-var screensize = Vector2(1152,648)
 signal hppy
+var looking = false
+var hey = Input.is_action_pressed("click")
 
 
-func _on_mouse_entered():
-	emit_signal("hppy")
+func _ready():
+	set_deferred("visible",false)
 
 
 func _on_timer_timeout():
-	var tw = create_tween()
-	tw.set_parallel()
+	set_deferred("visible",true)
 	$AnimationPlayer.play("moving")
-	$CollisionShape2D.set_deferred("disabled",true)
-	tw.tween_property(self, "position" ,Vector2(randi_range(100,1000),randi_range(50,600)) ,0.4)
-	$CollisionShape2D.set_deferred("disabled",false)
 
 
+func _on_animation_player_animation_finished(moving):
+	looking = true
+	$bored.start()
+
+func _on_bored_timeout():
+	set_deferred("visible",false)
+	looking = false
+
+
+func _process(delta):
+	if looking and hey:
+		emit_signal("hppy")
+		print_debug("hppy")

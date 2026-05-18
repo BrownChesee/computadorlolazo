@@ -1,32 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://cn55o1v56ots3"]
+[gd_scene load_steps=10 format=3 uid="uid://cn55o1v56ots3"]
 
 [ext_resource type="Script" path="res://Entidades/litlboy/litlboy.gd" id="1_nc71u"]
 
-[sub_resource type="Gradient" id="Gradient_m0w8m"]
-offsets = PackedFloat32Array(0.0129032)
-colors = PackedColorArray(1, 0.496017, 0.260669, 1)
+[sub_resource type="Gradient" id="Gradient_yom8b"]
+colors = PackedColorArray(0.694118, 0.694118, 0.694118, 0.196078, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cn1ix"]
+gradient = SubResource("Gradient_yom8b")
+width = 1
+height = 2
+
+[sub_resource type="Gradient" id="Gradient_3ikai"]
+interpolation_mode = 1
+colors = PackedColorArray(0.694118, 0.694118, 0.694118, 0.196078, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_67tfg"]
-gradient = SubResource("Gradient_m0w8m")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k077e"]
-size = Vector2(64, 64)
-
-[sub_resource type="Animation" id="Animation_dlqcd"]
-resource_name = "moving"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [Color(1, 1, 1, 1), Color(1, 0.0784314, 0.0941176, 1), Color(1, 1, 1, 1), Color(1, 0.0784314, 0.0941176, 1), Color(1, 1, 1, 1)]
-}
+gradient = SubResource("Gradient_3ikai")
+width = 1
+height = 1
 
 [sub_resource type="Animation" id="Animation_m3th6"]
 length = 0.001
@@ -43,31 +34,62 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_dlqcd"]
+resource_name = "moving"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 0.643137, 0.596078, 1), Color(1, 1, 1, 1), Color(1, 0.643137, 0.596078, 1), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e8yr5"]
 _data = {
 "RESET": SubResource("Animation_m3th6"),
 "moving": SubResource("Animation_dlqcd")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k077e"]
+size = Vector2(1, 1)
+
 [node name="Area2D" type="Area2D"]
-scale = Vector2(1.5, 1.5)
 script = ExtResource("1_nc71u")
 
+[node name="fondo" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(1152, 648)
+texture = SubResource("GradientTexture2D_cn1ix")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.995674, 1)
+position = Vector2(576, 324)
+scale = Vector2(1152, 648)
 texture = SubResource("GradientTexture2D_67tfg")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_k077e")
-
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 15.0
 autostart = true
+
+[node name="bored" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_e8yr5")
 }
 
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(1152, 648)
+shape = SubResource("RectangleShape2D_k077e")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="bored" to="." method="_on_bored_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
