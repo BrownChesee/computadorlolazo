@@ -1,0 +1,161 @@
+[gd_scene load_steps=16 format=3 uid="uid://bj0itxwstxmct"]
+
+[ext_resource type="Script" path="res://Entidades/P.C.M/P_C_M.gd" id="1_wlog6"]
+[ext_resource type="Texture2D" uid="uid://bxikixxm66v5x" path="res://Entidades/P.C.M/Sprite-PCM-Sheet.png" id="2_o8ohk"]
+[ext_resource type="Texture2D" uid="uid://dsoqsjlr0wxe0" path="res://Entidades/P.C.M/Sprite-arrows-Sheet.png" id="3_uiil5"]
+
+[sub_resource type="Animation" id="Animation_wps5u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_lqpka"]
+resource_name = "move"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_8s1fb"]
+resource_name = "punched"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_f3ujy"]
+resource_name = "wave"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 1]
+}
+
+[sub_resource type="Animation" id="Animation_t43kk"]
+resource_name = "punch"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m7pc1"]
+_data = {
+"RESET": SubResource("Animation_wps5u"),
+"move": SubResource("Animation_lqpka"),
+"punch": SubResource("Animation_t43kk"),
+"punched": SubResource("Animation_8s1fb"),
+"wave": SubResource("Animation_f3ujy")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w6oqd"]
+size = Vector2(512, 512)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7utnb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_is1uh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_484yh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jrinv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7v4gm"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_wlog6")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-256, -256)
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(-1.14441e-05, -7.62939e-06)
+texture = ExtResource("2_o8ohk")
+hframes = 3
+vframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Area2D/Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_m7pc1")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_w6oqd")
+
+[node name="Button" type="Button" parent="Area2D"]
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7utnb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_is1uh")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_484yh")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_jrinv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7v4gm")
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(960, 544)
+texture = ExtResource("3_uiil5")
+hframes = 2
+frame = 1
+
+[node name="SHB" type="Timer" parent="."]
+one_shot = true
+
+[node name="TTK" type="Timer" parent="."]
+wait_time = 9.0
+one_shot = true
+
+[connection signal="animation_finished" from="Area2D/Sprite2D/AnimationPlayer" to="." method="_on_animation_player_animation_finished2"]
+[connection signal="animation_finished" from="Area2D/Sprite2D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="Area2D/Sprite2D/AnimationPlayer" to="." method="_on_animation_player_animation_finished3"]
+[connection signal="pressed" from="Area2D/Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="SHB" to="." method="_on_shb_timeout"]
+[connection signal="timeout" from="TTK" to="." method="_on_ttk_timeout"]

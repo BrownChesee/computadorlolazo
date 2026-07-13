@@ -1,28 +1,36 @@
 extends Area2D
-signal hppy
-var looking = false
-var hey = Input.is_action_pressed("click")
+var seing = false
+var click
+signal bst_frnds
 
 
 func _ready():
 	set_deferred("visible",false)
+	$gtcha.start()
+
+
+func _on_gtcha_timeout():
+	set_deferred("visible",true)
+	$AnimatedSprite2D.play("new_animation")
+	$Timer.start()
+
+
+
+func _on_timer_2_timeout():
+	seing = false
+	set_deferred("visible",false)
+	$gtcha.start()
+	$AnimatedSprite2D.play("new_animation")
+
+func _process(_delta):
+	click = Input.is_action_just_pressed("click")
+	if seing and click:
+		print_debug("no")
+		emit_signal("bst_frnds")
 
 
 func _on_timer_timeout():
-	set_deferred("visible",true)
-	$AnimationPlayer.play("moving")
+	seing = true
+	$Timer2.start()
+	$AnimatedSprite2D.play("laugh")
 
-
-func _on_animation_player_animation_finished(moving):
-	looking = true
-	$bored.start()
-
-func _on_bored_timeout():
-	set_deferred("visible",false)
-	looking = false
-
-
-func _process(delta):
-	if looking and hey:
-		emit_signal("hppy")
-		print_debug("hppy")

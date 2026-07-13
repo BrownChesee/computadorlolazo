@@ -5,6 +5,7 @@ var numero = -10
 @export var taunt_scene:PackedScene
 @export var wiresea_scene:PackedScene
 @export var litlboy_scene:PackedScene
+@export var PCM_scene:PackedScene
 signal perdiste2
 signal taunt
 
@@ -56,5 +57,11 @@ func _on_node_wiresea():
 
 func _on_node_litlboy():
 	var l = litlboy_scene.instantiate()
-	l.connect("hppy",Callable(self,"peldite"))
 	add_child(l)
+	l.connect("bst_frnds",Callable(self,"peldite"))
+
+
+func _on_node_pcm():
+	var p = PCM_scene.instantiate()
+	add_child(p)
+	p.connect("HYD",Callable(self,"peldite"))

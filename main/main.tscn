@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://ds5vi3sli7gjg"]
+[gd_scene load_steps=9 format=3 uid="uid://bgatjk4lb3ycc"]
 
 [ext_resource type="PackedScene" uid="uid://cpgdhgy2g2at7" path="res://PantallaPrincipal/pantalla_pricipal.tscn" id="1_hxayl"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_txr34"]
 [ext_resource type="PackedScene" uid="uid://dvuktfxac4o2o" path="res://Entidades/Entidades.tscn" id="2_43el8"]
-[ext_resource type="PackedScene" uid="uid://se8jnx2d6khu" path="res://main/fondo/fondo.tscn" id="4_fdu6n"]
+[ext_resource type="Texture2D" uid="uid://cb5808305eap5" path="res://main/Sprite-misser.png" id="2_kbw0g"]
+[ext_resource type="Texture2D" uid="uid://cay5p77n8564j" path="res://main/Sprite-bacbakground-Sheet.png" id="2_oyyqj"]
+[ext_resource type="Texture2D" uid="uid://ba6pocav7v6vf" path="res://main/borde.png" id="5_7mb0k"]
+[ext_resource type="PackedScene" uid="uid://bmqh70s3utk2s" path="res://main/camera/caamera.tscn" id="5_wqivd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vdpei"]
 font_size = 129
@@ -12,9 +15,15 @@ font_size = 129
 process_mode = 1
 script = ExtResource("1_txr34")
 
-[node name="Sprite2D" parent="." instance=ExtResource("4_fdu6n")]
-position = Vector2(576.5, 323.5)
-scale = Vector2(10.275, 10.1719)
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+modulate = Color(0.490196, 0.490196, 0.490196, 1)
+position = Vector2(876, 536)
+scale = Vector2(0.9975, 1)
+texture = ExtResource("2_oyyqj")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(956, 540)
+texture = ExtResource("2_kbw0g")
 
 [node name="PantallaPricipal" parent="." instance=ExtResource("1_hxayl")]
 
@@ -34,8 +43,12 @@ grow_horizontal = 2
 grow_vertical = 2
 label_settings = SubResource("LabelSettings_vdpei")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(576, 324)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("5_7mb0k")
+
+[node name="Node2D" parent="." instance=ExtResource("5_wqivd")]
+position = Vector2(960, 0)
 
 [connection signal="perdiste" from="PantallaPricipal" to="." method="perder"]
 [connection signal="perdiste2" from="Entidades" to="." method="perder"]

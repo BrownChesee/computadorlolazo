@@ -1,95 +1,62 @@
-[gd_scene load_steps=10 format=3 uid="uid://cn55o1v56ots3"]
+[gd_scene load_steps=7 format=3 uid="uid://jyurfscr22h1"]
 
-[ext_resource type="Script" path="res://Entidades/litlboy/litlboy.gd" id="1_nc71u"]
+[ext_resource type="Script" path="res://Entidades/litlboy/litlboy.gd" id="1_logbg"]
+[ext_resource type="Texture2D" uid="uid://cx2d35j77gs1g" path="res://Entidades/litlboy/Sprite-litlboy1.jpeg" id="2_uengh"]
+[ext_resource type="Texture2D" uid="uid://dam3qxloeowlo" path="res://Entidades/litlboy/Sprite-litlboy2.jpeg" id="3_klfjv"]
+[ext_resource type="Texture2D" uid="uid://bjjwhcmgv014t" path="res://Entidades/litlboy/Sprite-litlboy3.jpeg" id="4_h47rc"]
 
-[sub_resource type="Gradient" id="Gradient_yom8b"]
-colors = PackedColorArray(0.694118, 0.694118, 0.694118, 0.196078, 1, 1, 1, 1)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2wx0e"]
+size = Vector2(1928, 1080)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_cn1ix"]
-gradient = SubResource("Gradient_yom8b")
-width = 1
-height = 2
-
-[sub_resource type="Gradient" id="Gradient_3ikai"]
-interpolation_mode = 1
-colors = PackedColorArray(0.694118, 0.694118, 0.694118, 0.196078, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_67tfg"]
-gradient = SubResource("Gradient_3ikai")
-width = 1
-height = 1
-
-[sub_resource type="Animation" id="Animation_m3th6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_dlqcd"]
-resource_name = "moving"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [Color(1, 1, 1, 1), Color(1, 0.643137, 0.596078, 1), Color(1, 1, 1, 1), Color(1, 0.643137, 0.596078, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_e8yr5"]
-_data = {
-"RESET": SubResource("Animation_m3th6"),
-"moving": SubResource("Animation_dlqcd")
-}
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k077e"]
-size = Vector2(1, 1)
+[sub_resource type="SpriteFrames" id="SpriteFrames_37tb3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_uengh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_klfjv")
+}],
+"loop": true,
+"name": &"laugh",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_h47rc")
+}],
+"loop": false,
+"name": &"new_animation",
+"speed": 5.0
+}]
 
 [node name="Area2D" type="Area2D"]
-script = ExtResource("1_nc71u")
+script = ExtResource("1_logbg")
 
-[node name="fondo" type="Sprite2D" parent="."]
-position = Vector2(576, 324)
-scale = Vector2(1152, 648)
-texture = SubResource("GradientTexture2D_cn1ix")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(956, 540)
+shape = SubResource("RectangleShape2D_2wx0e")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(576, 324)
-scale = Vector2(1152, 648)
-texture = SubResource("GradientTexture2D_67tfg")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.47451)
+position = Vector2(956, 544)
+scale = Vector2(1.00417, 1.00741)
+sprite_frames = SubResource("SpriteFrames_37tb3")
+animation = &"laugh"
+frame = 1
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 15.0
-autostart = true
+[node name="gtcha" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
 
-[node name="bored" type="Timer" parent="."]
+[node name="Timer2" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_e8yr5")
-}
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(576, 324)
-scale = Vector2(1152, 648)
-shape = SubResource("RectangleShape2D_k077e")
-
+[connection signal="timeout" from="gtcha" to="." method="_on_gtcha_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="bored" to="." method="_on_bored_timeout"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

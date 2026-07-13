@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dvuktfxac4o2o"]
+[gd_scene load_steps=10 format=3 uid="uid://dvuktfxac4o2o"]
 
 [ext_resource type="Script" path="res://Entidades/Entidades.gd" id="1_wf3xq"]
 [ext_resource type="PackedScene" uid="uid://dws0p4dfkgsi" path="res://Entidades/anuncio/anuncio.tscn" id="2_yuxwf"]
@@ -6,8 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://m07arqp4l85x" path="res://Entidades/molestia/Molestia.tscn" id="4_86q2q"]
 [ext_resource type="PackedScene" uid="uid://wmhvjps52eyj" path="res://Entidades/wiresea/wiresea.tscn" id="5_2rpee"]
 [ext_resource type="PackedScene" uid="uid://dwyhpx0p5fpxm" path="res://Entidades/malware/malware.tscn" id="5_y56c6"]
-[ext_resource type="PackedScene" uid="uid://cn55o1v56ots3" path="res://Entidades/litlboy/litlboy.tscn" id="6_330mi"]
+[ext_resource type="PackedScene" uid="uid://jyurfscr22h1" path="res://Entidades/litlboy/litlboy.tscn" id="6_745uf"]
 [ext_resource type="PackedScene" uid="uid://oclrcqtmbew2" path="res://Entidades/Taunt/Taunt.tscn" id="6_rb0dh"]
+[ext_resource type="PackedScene" uid="uid://bj0itxwstxmct" path="res://Entidades/P.C.M/P_C_M.tscn" id="7_5mg8c"]
 
 [node name="Entidades" type="Node"]
 script = ExtResource("1_wf3xq")
@@ -15,7 +16,8 @@ anuncio_scene = ExtResource("2_yuxwf")
 skull_scene = ExtResource("3_voa3y")
 taunt_scene = ExtResource("6_rb0dh")
 wiresea_scene = ExtResource("5_2rpee")
-litlboy_scene = ExtResource("6_330mi")
+litlboy_scene = ExtResource("6_745uf")
+PCM_scene = ExtResource("7_5mg8c")
 
 [node name="Molestia" parent="." instance=ExtResource("4_86q2q")]
 
@@ -30,6 +32,7 @@ one_shot = true
 
 [connection signal="timeout" from="anuncio" to="." method="_on_anuncio_timeout"]
 [connection signal="timeout" from="skull" to="." method="_on_skull_timeout"]
+[connection signal="PCM" from="Node" to="." method="_on_node_pcm"]
 [connection signal="anuncio" from="Node" to="." method="_on_node_anuncio"]
 [connection signal="litlboy" from="Node" to="." method="_on_node_litlboy"]
 [connection signal="molestia" from="Node" to="." method="_on_node_molestia"]

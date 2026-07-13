@@ -15,15 +15,4 @@ func perder():
 
 
 func _process(delta):
-	var a = Input.is_action_pressed("A")
-	var d = Input.is_action_pressed("D")
-	if a:
-		$Camera2D.position.x -= 300 * delta 
-		emit_signal("camara_izquierda")
-	if d:
-		$Camera2D.position.x += 300 * delta
-		emit_signal("camara_derecha")
-	if $Camera2D.position.x > 500:
-		$Camera2D.position.x = 500
-	if $Camera2D.position.x < -500:
-		$Camera2D.position.x = -500
+	$Sprite2D.z_index = 101

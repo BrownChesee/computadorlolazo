@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dws0p4dfkgsi"]
+[gd_scene load_steps=6 format=3 uid="uid://dws0p4dfkgsi"]
 
 [ext_resource type="Script" path="res://Entidades/anuncio/anuncio.gd" id="1_1ofns"]
+[ext_resource type="Texture2D" uid="uid://00xy3lb6mys3" path="res://Entidades/anuncio/Sprite-anuncio-Sheet.png" id="2_yonv4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1dnyx"]
 
@@ -8,30 +9,29 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k56uf"]
 
-[sub_resource type="Gradient" id="Gradient_6yibx"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(1, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_y1hh0"]
-gradient = SubResource("Gradient_6yibx")
-width = 256
-height = 128
-
 [node name="Button" type="Button"]
-anchors_preset = -1
-anchor_right = 0.55
-anchor_bottom = 0.566
-offset_left = 357.0
-offset_top = 239.0
-offset_right = -20.6
-offset_bottom = 0.231964
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -252.0
+offset_top = -128.0
+offset_right = 260.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_1dnyx")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_o5cde")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_k56uf")
-text = "anuncio"
-icon = SubResource("GradientTexture2D_y1hh0")
 flat = true
 icon_alignment = 1
 script = ExtResource("1_1ofns")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(256, 128)
+texture = ExtResource("2_yonv4")
+hframes = 2
+vframes = 4
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
