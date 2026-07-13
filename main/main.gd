@@ -1,5 +1,7 @@
 extends Node
 var cursor = 0
+signal camara_izquierda 
+signal camara_derecha
 
 
 func _ready():
