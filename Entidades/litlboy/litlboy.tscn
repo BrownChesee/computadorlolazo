@@ -1,17 +1,62 @@
-[gd_scene load_steps=3 format=3 uid="uid://jyurfscr22h1"]
+[gd_scene load_steps=7 format=3 uid="uid://jyurfscr22h1"]
 
-[sub_resource type="Gradient" id="Gradient_p8ics"]
-offsets = PackedFloat32Array(0.890323)
-colors = PackedColorArray(0, 1, 1, 0.258824)
+[ext_resource type="Script" path="res://Entidades/litlboy/litlboy.gd" id="1_logbg"]
+[ext_resource type="Texture2D" uid="uid://cx2d35j77gs1g" path="res://Entidades/litlboy/Sprite-litlboy1.jpeg" id="2_uengh"]
+[ext_resource type="Texture2D" uid="uid://dam3qxloeowlo" path="res://Entidades/litlboy/Sprite-litlboy2.jpeg" id="3_klfjv"]
+[ext_resource type="Texture2D" uid="uid://bjjwhcmgv014t" path="res://Entidades/litlboy/Sprite-litlboy3.jpeg" id="4_h47rc"]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_7gq2b"]
-gradient = SubResource("Gradient_p8ics")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2wx0e"]
+size = Vector2(1928, 1080)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_37tb3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_uengh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_klfjv")
+}],
+"loop": true,
+"name": &"laugh",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_h47rc")
+}],
+"loop": false,
+"name": &"new_animation",
+"speed": 5.0
+}]
 
 [node name="Area2D" type="Area2D"]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(578, 970)
-scale = Vector2(18, 10.125)
-texture = SubResource("GradientTexture2D_7gq2b")
+script = ExtResource("1_logbg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(956, 540)
+shape = SubResource("RectangleShape2D_2wx0e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.47451)
+position = Vector2(956, 544)
+scale = Vector2(1.00417, 1.00741)
+sprite_frames = SubResource("SpriteFrames_37tb3")
+animation = &"laugh"
+frame = 1
+
+[node name="gtcha" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[connection signal="timeout" from="gtcha" to="." method="_on_gtcha_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

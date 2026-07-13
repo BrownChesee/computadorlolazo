@@ -1,9 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpgdhgy2g2at7"]
+[gd_scene load_steps=5 format=3 uid="uid://cpgdhgy2g2at7"]
 
 [ext_resource type="Script" path="res://PantallaPrincipal/main.gd" id="1_cabl2"]
 [ext_resource type="PackedScene" uid="uid://b7joycgm6lby7" path="res://charger/charger.tscn" id="1_cnn81"]
+[ext_resource type="FontFile" uid="uid://chmeirxsivunu" path="res://PantallaPrincipal/VCR_OSD_MONO_1.001.ttf" id="3_ndh1i"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fh2dx"]
+font = ExtResource("3_ndh1i")
 font_size = 64
 outline_size = 16
 outline_color = Color(0, 0, 0, 1)
@@ -14,10 +16,10 @@ script = ExtResource("1_cabl2")
 [node name="Button" parent="." instance=ExtResource("1_cnn81")]
 
 [node name="supervivencia" type="Label" parent="."]
-offset_left = 2.0
-offset_top = 556.0
-offset_right = 113.0
-offset_bottom = 647.0
+offset_left = 24.0
+offset_top = 1006.0
+offset_right = 138.0
+offset_bottom = 1097.0
 text = "100"
 label_settings = SubResource("LabelSettings_fh2dx")
 
