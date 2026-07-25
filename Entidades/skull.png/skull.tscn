@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cp7iedx6hn8k1"]
+[gd_scene load_steps=8 format=3 uid="uid://cp7iedx6hn8k1"]
 
 [ext_resource type="Script" path="res://Entidades/skull.png/skull.gd" id="1_2cwhg"]
 [ext_resource type="Texture2D" uid="uid://g5qngoiljw4a" path="res://Entidades/skull.png/Sprite-skul-Sheet.png" id="2_kb5xr"]
+[ext_resource type="AudioStream" uid="uid://cnfki33xe04u4" path="res://Entidades/skull.png/freesound_community-pixel-sound-effect-3-82880.mp3" id="3_5qb1b"]
 
 [sub_resource type="Animation" id="Animation_mxnav"]
 length = 0.001
@@ -44,6 +45,7 @@ _data = {
 size = Vector2(256, 256)
 
 [node name="Area2D" type="Area2D"]
+process_mode = 1
 position = Vector2(960, 540)
 script = ExtResource("1_2cwhg")
 
@@ -65,5 +67,9 @@ shape = SubResource("RectangleShape2D_bt55v")
 position = Vector2(-128, -128)
 scale = Vector2(1, 1.008)
 rect = Rect2(0, 0, 256, 256)
+
+[node name="punch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_5qb1b")
+volume_db = -6.0
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

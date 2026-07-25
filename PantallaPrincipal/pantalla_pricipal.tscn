@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpgdhgy2g2at7"]
+[gd_scene load_steps=6 format=3 uid="uid://cpgdhgy2g2at7"]
 
 [ext_resource type="Script" path="res://PantallaPrincipal/main.gd" id="1_cabl2"]
 [ext_resource type="PackedScene" uid="uid://b7joycgm6lby7" path="res://charger/charger.tscn" id="1_cnn81"]
 [ext_resource type="FontFile" uid="uid://chmeirxsivunu" path="res://PantallaPrincipal/VCR_OSD_MONO_1.001.ttf" id="3_ndh1i"]
+[ext_resource type="AudioStream" uid="uid://4xscp32vm2uv" path="res://PantallaPrincipal/tbsfx-heartbeat-415837 (1).mp3" id="4_tiqp7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fh2dx"]
 font = ExtResource("3_ndh1i")
@@ -26,6 +27,10 @@ label_settings = SubResource("LabelSettings_fh2dx")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
 autostart = true
+
+[node name="Heartbeat" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_tiqp7")
+volume_db = -6.0
 
 [connection signal="presionado" from="Button" to="." method="_on_button_presionado"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

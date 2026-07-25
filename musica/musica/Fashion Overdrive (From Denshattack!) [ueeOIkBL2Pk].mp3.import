@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dh6vtavadsljp"
+path="res://.godot/imported/Fashion Overdrive (From Denshattack!) [ueeOIkBL2Pk].mp3-6cb88c185bd49c822be7efd92b844549.mp3str"
+
+[deps]
+
+source_file="res://musica/musica/Fashion Overdrive (From Denshattack!) [ueeOIkBL2Pk].mp3"
+dest_files=["res://.godot/imported/Fashion Overdrive (From Denshattack!) [ueeOIkBL2Pk].mp3-6cb88c185bd49c822be7efd92b844549.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://drl8xvdicnisw"
+path="res://.godot/imported/Klagmar's Top VGM #4,231 - GLASS - The Rat Race [_Ws5e2ZE4sQ].mp3-98b38b6cbde3e7ea1a4c71ff9a6d0ef9.mp3str"
+
+[deps]
+
+source_file="res://musica/musica/Klagmar's Top VGM #4,231 - GLASS - The Rat Race [_Ws5e2ZE4sQ].mp3"
+dest_files=["res://.godot/imported/Klagmar's Top VGM #4,231 - GLASS - The Rat Race [_Ws5e2ZE4sQ].mp3-98b38b6cbde3e7ea1a4c71ff9a6d0ef9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

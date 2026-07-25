@@ -1,18 +1,139 @@
-[gd_scene load_steps=9 format=3 uid="uid://bgatjk4lb3ycc"]
+[gd_scene load_steps=16 format=3 uid="uid://bgatjk4lb3ycc"]
 
 [ext_resource type="PackedScene" uid="uid://cpgdhgy2g2at7" path="res://PantallaPrincipal/pantalla_pricipal.tscn" id="1_hxayl"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_txr34"]
 [ext_resource type="PackedScene" uid="uid://dvuktfxac4o2o" path="res://Entidades/Entidades.tscn" id="2_43el8"]
-[ext_resource type="Texture2D" uid="uid://cb5808305eap5" path="res://main/Sprite-misser.png" id="2_kbw0g"]
 [ext_resource type="Texture2D" uid="uid://cay5p77n8564j" path="res://main/Sprite-bacbakground-Sheet.png" id="2_oyyqj"]
+[ext_resource type="Texture2D" uid="uid://pkwdp1nerfdi" path="res://main/Sprite-fondo.png" id="3_2t531"]
 [ext_resource type="Texture2D" uid="uid://ba6pocav7v6vf" path="res://main/borde.png" id="5_7mb0k"]
 [ext_resource type="PackedScene" uid="uid://bmqh70s3utk2s" path="res://main/camera/caamera.tscn" id="5_wqivd"]
+[ext_resource type="FontFile" uid="uid://chmeirxsivunu" path="res://PantallaPrincipal/VCR_OSD_MONO_1.001.ttf" id="8_cc11b"]
+[ext_resource type="PackedScene" uid="uid://dp73h606gr46v" path="res://musica/musica.tscn" id="9_641f2"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_vdpei"]
-font_size = 129
+[sub_resource type="Gradient" id="Gradient_dyl4h"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ofbo5"]
+gradient = SubResource("Gradient_dyl4h")
+width = 4000
+height = 1088
+
+[sub_resource type="Animation" id="Animation_57y1f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_p7t30"]
+resource_name = "game over"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(0.392157, 0.392157, 0.392157, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gr8ep"]
+_data = {
+"RESET": SubResource("Animation_57y1f"),
+"game over": SubResource("Animation_p7t30")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_fcxul"]
+font = ExtResource("8_cc11b")
+font_size = 64
 
 [node name="Main" type="Node"]
-process_mode = 1
+process_mode = 3
 script = ExtResource("1_txr34")
 
 [node name="Sprite2D3" type="Sprite2D" parent="."]
@@ -23,32 +144,61 @@ texture = ExtResource("2_oyyqj")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(956, 540)
-texture = ExtResource("2_kbw0g")
+texture = ExtResource("3_2t531")
 
 [node name="PantallaPricipal" parent="." instance=ExtResource("1_hxayl")]
+process_mode = 1
 
 [node name="Entidades" parent="." instance=ExtResource("2_43el8")]
-
-[node name="Label" type="Label" parent="."]
-anchors_preset = -1
-anchor_left = 0.523
-anchor_top = 0.454
-anchor_right = 0.567
-anchor_bottom = 0.554
-offset_left = -52.996
-offset_top = 15.808
-offset_right = -50.684
-offset_bottom = -20.992
-grow_horizontal = 2
-grow_vertical = 2
-label_settings = SubResource("LabelSettings_vdpei")
+process_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
 texture = ExtResource("5_7mb0k")
 
 [node name="Node2D" parent="." instance=ExtResource("5_wqivd")]
+process_mode = 3
+visible = false
 position = Vector2(960, 0)
+
+[node name="GameOver" type="Sprite2D" parent="."]
+process_mode = 3
+position = Vector2(900, 536)
+texture = SubResource("GradientTexture2D_ofbo5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameOver"]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_gr8ep")
+}
+
+[node name="Label2" type="Label" parent="GameOver"]
+process_mode = 3
+anchors_preset = -1
+anchor_left = 0.234
+anchor_right = 0.799
+anchor_bottom = 1.0
+offset_left = -1840.0
+offset_top = -534.0
+offset_right = -2180.0
+offset_bottom = -540.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "muerto"
+label_settings = SubResource("LabelSettings_fcxul")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="game_reset" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="AudioStreamPlayer" parent="." instance=ExtResource("9_641f2")]
+process_mode = 3
 
 [connection signal="perdiste" from="PantallaPricipal" to="." method="perder"]
 [connection signal="perdiste2" from="Entidades" to="." method="perder"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="game_reset" to="." method="_on_game_reset_timeout"]

@@ -1,49 +1,110 @@
-[gd_scene load_steps=7 format=3 uid="uid://jyurfscr22h1"]
+[gd_scene load_steps=9 format=3 uid="uid://jyurfscr22h1"]
 
 [ext_resource type="Script" path="res://Entidades/litlboy/litlboy.gd" id="1_logbg"]
-[ext_resource type="Texture2D" uid="uid://cx2d35j77gs1g" path="res://Entidades/litlboy/Sprite-litlboy1.jpeg" id="2_uengh"]
-[ext_resource type="Texture2D" uid="uid://dam3qxloeowlo" path="res://Entidades/litlboy/Sprite-litlboy2.jpeg" id="3_klfjv"]
-[ext_resource type="Texture2D" uid="uid://bjjwhcmgv014t" path="res://Entidades/litlboy/Sprite-litlboy3.jpeg" id="4_h47rc"]
+[ext_resource type="Texture2D" uid="uid://bbstfqb07qb2k" path="res://Entidades/litlboy/Sprite-litlboy-Sheet.png" id="2_7eih6"]
+[ext_resource type="AudioStream" uid="uid://ddi611chjmxjd" path="res://Entidades/litlboy/ultrakill-ha-computer-laughing.mp3" id="3_tyeh0"]
+
+[sub_resource type="Animation" id="Animation_85beq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../HA:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_44s26"]
+resource_name = "laugh"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../HA:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_6grdw"]
+resource_name = "laugh_mute"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tsveo"]
+_data = {
+"RESET": SubResource("Animation_85beq"),
+"laugh": SubResource("Animation_44s26"),
+"laugh_mute": SubResource("Animation_6grdw")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2wx0e"]
-size = Vector2(1928, 1080)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_37tb3"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_uengh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_klfjv")
-}],
-"loop": true,
-"name": &"laugh",
-"speed": 7.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_h47rc")
-}],
-"loop": false,
-"name": &"new_animation",
-"speed": 5.0
-}]
+size = Vector2(1920, 1080)
 
 [node name="Area2D" type="Area2D"]
 script = ExtResource("1_logbg")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(956, 540)
-shape = SubResource("RectangleShape2D_2wx0e")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.627451)
+position = Vector2(960, 540)
+texture = ExtResource("2_7eih6")
+hframes = 2
+vframes = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.47451)
-position = Vector2(956, 544)
-scale = Vector2(1.00417, 1.00741)
-sprite_frames = SubResource("SpriteFrames_37tb3")
-animation = &"laugh"
-frame = 1
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_tsveo")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(960, 540)
+shape = SubResource("RectangleShape2D_2wx0e")
 
 [node name="gtcha" type="Timer" parent="."]
 wait_time = 10.0
@@ -54,8 +115,12 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.4
+wait_time = 0.3
 one_shot = true
+
+[node name="HA" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_tyeh0")
+volume_db = -6.0
 
 [connection signal="timeout" from="gtcha" to="." method="_on_gtcha_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7joycgm6lby7"]
+[gd_scene load_steps=9 format=3 uid="uid://b7joycgm6lby7"]
 
 [ext_resource type="Texture2D" uid="uid://c6kfs8gflbl2k" path="res://charger/Sprite-chargerbbb.png" id="1_3oir8"]
 [ext_resource type="Script" path="res://charger/charger.gd" id="1_rv3ls"]
+[ext_resource type="AudioStream" uid="uid://b1ys724girx0b" path="res://charger/universfield-click-button-140881.mp3" id="3_k7djc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xojj3"]
 
@@ -24,5 +25,9 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_heu35")
 icon = ExtResource("1_3oir8")
 icon_alignment = 1
 script = ExtResource("1_rv3ls")
+
+[node name="sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_k7djc")
+volume_db = -12.0
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

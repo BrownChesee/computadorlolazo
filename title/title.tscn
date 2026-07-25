@@ -1,0 +1,279 @@
+[gd_scene load_steps=33 format=3 uid="uid://cmhx5j4qpbsk3"]
+
+[ext_resource type="Script" path="res://title/title.gd" id="1_4noei"]
+[ext_resource type="Texture2D" uid="uid://b57espwoncns3" path="res://title/title.png" id="1_sma4l"]
+[ext_resource type="Texture2D" uid="uid://dxr3fx75kov7f" path="res://title/Sprite-characters-Sheet.PNG" id="2_w4gh4"]
+[ext_resource type="Texture2D" uid="uid://bxanwijl47be6" path="res://title/Sprite-button.png" id="4_whw3m"]
+[ext_resource type="Texture2D" uid="uid://tslws8nmkpnd" path="res://title/Sprite-music1.png" id="5_ay1l5"]
+[ext_resource type="Texture2D" uid="uid://b4767dhmhm4r6" path="res://title/Sprite-sound1.png" id="6_k0r26"]
+
+[sub_resource type="Gradient" id="Gradient_5th6h"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t204b"]
+gradient = SubResource("Gradient_5th6h")
+
+[sub_resource type="Animation" id="Animation_ixtxd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.160784, 0, 0.164706, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_imhcf"]
+resource_name = "color"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.160784, 0, 0.164706, 1), Color(0.141176, 0, 0.14902, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ul7s6"]
+_data = {
+"RESET": SubResource("Animation_ixtxd"),
+"color": SubResource("Animation_imhcf")
+}
+
+[sub_resource type="Animation" id="Animation_u46rl"]
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_uj8q4"]
+resource_name = "spin"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 4
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3, 4.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.122173, 0.0, -0.122173]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qtjya"]
+_data = {
+"RESET": SubResource("Animation_u46rl"),
+"spin": SubResource("Animation_uj8q4")
+}
+
+[sub_resource type="Animation" id="Animation_7gg4j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_guuip"]
+resource_name = "fade_out"
+length = 16.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 8, 16),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7dep8"]
+_data = {
+"RESET": SubResource("Animation_7gg4j"),
+"fade_out": SubResource("Animation_guuip")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qctt8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7y47c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ddm5l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8i28q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lh723"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4h70m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3mm7i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ws3ge"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_goqsb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2814u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hnn0r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lt6ku"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vkfy2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_grury"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kdi87"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4noei")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+modulate = Color(0.160784, 0, 0.164706, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_t204b")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect3"]
+autoplay = "color"
+libraries = {
+"": SubResource("AnimationLibrary_ul7s6")
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 552.0
+offset_bottom = 296.0
+pivot_offset = Vector2(256, 128)
+texture = ExtResource("1_sma4l")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect"]
+autoplay = "spin"
+libraries = {
+"": SubResource("AnimationLibrary_qtjya")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1440, 540)
+texture = ExtResource("2_w4gh4")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_7dep8")
+}
+
+[node name="FrameChanger" type="Timer" parent="Sprite2D"]
+wait_time = 8.0
+one_shot = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 48.0
+offset_top = -68.0
+offset_right = 312.0
+offset_bottom = 68.0
+grow_vertical = 2
+scale = Vector2(2, 2)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qctt8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_7y47c")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ddm5l")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8i28q")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lh723")
+icon = ExtResource("4_whw3m")
+icon_alignment = 1
+
+[node name="musica" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 57.0
+offset_top = 232.0
+offset_right = 185.0
+offset_bottom = 360.0
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4h70m")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3mm7i")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ws3ge")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_goqsb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2814u")
+icon = ExtResource("5_ay1l5")
+
+[node name="sonido" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 228.0
+offset_top = 772.0
+offset_right = -1564.0
+offset_bottom = -180.0
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hnn0r")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_lt6ku")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vkfy2")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_grury")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kdi87")
+icon = ExtResource("6_k0r26")
+
+[connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="animation_finished" from="Sprite2D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Sprite2D/FrameChanger" to="." method="_on_frame_changer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="musica" to="." method="_on_musica_pressed"]
+[connection signal="pressed" from="sonido" to="." method="_on_sonido_pressed"]

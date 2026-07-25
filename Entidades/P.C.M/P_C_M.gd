@@ -35,13 +35,13 @@ func _on_ttk_timeout():
 	if click <= 0:
 		pass
 	else:
-		print_debug("bro")
 		emit_signal("HYD")
 	$SHB.start()
 
 
 
 func _on_button_pressed():
+	var sonido = randi_range(1,4)
 	click -= 1
 	$Area2D/Sprite2D/AnimationPlayer.stop()
 	$Area2D/Sprite2D/AnimationPlayer.play("punched")
@@ -49,6 +49,18 @@ func _on_button_pressed():
 	if click <= 0:
 		$Area2D/Sprite2D/AnimationPlayer.play("move")
 		$Area2D/Button.set_deferred("disabled",true)
+	if Loads.sfx == false:
+		if sonido == 1:
+			$sonidos/metal1.play()
+		if sonido == 2:
+			$sonidos/metal2.play()
+		if sonido == 3:
+			$sonidos/metal3.play()
+		if sonido == 4:
+			$sonidos/metal4.play()
+
+
+
 
 
 func _process(_delta):

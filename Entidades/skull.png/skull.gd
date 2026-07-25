@@ -7,6 +7,8 @@ func _process(delta):
 	virus += 1 * delta
 	var abajo = Input.is_action_just_pressed("punch")
 	if abajo:
+		if Loads.sfx == false:
+			$punch.play()
 		position.y += 100
 	if virus > 3:
 		emit_signal("perdiste")

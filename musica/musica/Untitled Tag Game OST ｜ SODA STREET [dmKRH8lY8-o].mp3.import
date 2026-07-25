@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://2isbgxvuid54"
+path="res://.godot/imported/Untitled Tag Game OST ｜ SODA STREET [dmKRH8lY8-o].mp3-e9487dbee655bb723210de42fab28296.mp3str"
+
+[deps]
+
+source_file="res://musica/musica/Untitled Tag Game OST ｜ SODA STREET [dmKRH8lY8-o].mp3"
+dest_files=["res://.godot/imported/Untitled Tag Game OST ｜ SODA STREET [dmKRH8lY8-o].mp3-e9487dbee655bb723210de42fab28296.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

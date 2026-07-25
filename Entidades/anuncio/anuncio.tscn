@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dws0p4dfkgsi"]
+[gd_scene load_steps=7 format=3 uid="uid://dws0p4dfkgsi"]
 
 [ext_resource type="Script" path="res://Entidades/anuncio/anuncio.gd" id="1_1ofns"]
-[ext_resource type="Texture2D" uid="uid://00xy3lb6mys3" path="res://Entidades/anuncio/Sprite-anuncio-Sheet.png" id="2_yonv4"]
+[ext_resource type="Texture2D" uid="uid://be7lwplh26p1r" path="res://Entidades/anuncio/Sprite-anuncio-Shee2t.png" id="2_lwxn6"]
+[ext_resource type="AudioStream" uid="uid://b1ys724girx0b" path="res://charger/universfield-click-button-140881.mp3" id="3_04ece"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1dnyx"]
 
@@ -30,8 +31,13 @@ script = ExtResource("1_1ofns")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(256, 128)
-texture = ExtResource("2_yonv4")
+texture = ExtResource("2_lwxn6")
 hframes = 2
-vframes = 4
+vframes = 6
+frame = 11
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_04ece")
+volume_db = -12.0
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

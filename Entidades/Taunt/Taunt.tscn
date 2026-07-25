@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://oclrcqtmbew2"]
+[gd_scene load_steps=6 format=3 uid="uid://oclrcqtmbew2"]
 
 [ext_resource type="Script" path="res://Entidades/Taunt/Taunt.gd" id="1_rgi5d"]
 [ext_resource type="Texture2D" uid="uid://c1mja63vlw448" path="res://Entidades/Taunt/Sprite-taunt128x128 -Sheet.png" id="2_857rw"]
+[ext_resource type="AudioStream" uid="uid://cntjs5kshe70e" path="res://Entidades/Taunt/powerup_multiball.ogg" id="3_ye2qm"]
+[ext_resource type="AudioStream" uid="uid://8kmgw8i3hipx" path="res://Entidades/Taunt/peghit.ogg" id="4_5iq6n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tanct"]
 size = Vector2(128, 128)
 
 [node name="Area2D" type="Area2D"]
+process_mode = 1
 position = Vector2(-64, -64)
 script = ExtResource("1_rgi5d")
 
@@ -25,6 +28,13 @@ autostart = true
 [node name="Taunt" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
+
+[node name="Cool!" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ye2qm")
+volume_db = -6.0
+
+[node name="sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_5iq6n")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Taunt" to="." method="_on_taunt_timeout"]
