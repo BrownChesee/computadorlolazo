@@ -17,7 +17,7 @@ func perder():
 	tuviste " + str(enemigos) + " enemigos, 
 	apreta R para reiniciar"
 	get_tree().paused = true
-func _process(delta):
+func _process(_delta):
 	$Sprite2D.z_index = 101
 	$GameOver.z_index = 102
 	$GameOver/Label2.z_index = 103

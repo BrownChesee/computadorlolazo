@@ -72,13 +72,13 @@ func _process(_delta):
 		$Area2D/Sprite2D.set_deferred("visible",true)
 
 
-func _on_animation_player_animation_finished(punched):
+func _on_animation_player_animation_finished(_punched):
 	$Area2D/Sprite2D/AnimationPlayer.play("wave")
 
 
-func _on_animation_player_animation_finished2(move):
+func _on_animation_player_animation_finished2(_move):
 	$Area2D/Sprite2D.set_deferred("visible",false)
 
 
-func _on_animation_player_animation_finished3(punch):
+func _on_animation_player_animation_finished3(_punch):
 	$Area2D/Sprite2D/AnimationPlayer.play("wave")

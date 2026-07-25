@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7joycgm6lby7"]
+[gd_scene load_steps=13 format=3 uid="uid://es0eyjfo12il"]
 
 [ext_resource type="Texture2D" uid="uid://c6kfs8gflbl2k" path="res://charger/Sprite-chargerbbb.png" id="1_3oir8"]
 [ext_resource type="Script" path="res://charger/charger.gd" id="1_rv3ls"]
 [ext_resource type="AudioStream" uid="uid://b1ys724girx0b" path="res://charger/universfield-click-button-140881.mp3" id="3_k7djc"]
+[ext_resource type="Texture2D" uid="uid://tny2njmlhnbh" path="res://charger/Sprite-click.png" id="4_1beoh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xojj3"]
 
@@ -13,6 +14,43 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1dofa"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_heu35"]
+
+[sub_resource type="Animation" id="Animation_m5swy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lqgqa"]
+resource_name = "fadeing"
+length = 9.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5.9, 9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yu868"]
+_data = {
+"RESET": SubResource("Animation_m5swy"),
+"fadeing": SubResource("Animation_lqgqa")
+}
 
 [node name="Button" type="Button"]
 offset_right = 128.0
@@ -29,5 +67,15 @@ script = ExtResource("1_rv3ls")
 [node name="sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_k7djc")
 volume_db = -12.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(63, 213)
+texture = ExtResource("4_1beoh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+autoplay = "fadeing"
+libraries = {
+"": SubResource("AnimationLibrary_yu868")
+}
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

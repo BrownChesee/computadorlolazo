@@ -13,6 +13,8 @@ func _process(delta):
 	wires -= 250 * delta
 	var fix = Input.is_action_pressed("punch")
 	if fix:
-		wires += 7
+		wires += 360 * delta
 	if wires < 1 or wires > 1075:
 		emit_signal("ABANDONED")
+		wires = 500
+		print_debug("j")

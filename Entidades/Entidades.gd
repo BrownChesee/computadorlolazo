@@ -21,7 +21,7 @@ func _on_skull_timeout():
 	s.connect("perdiste", Callable(self, "peldite"))
 	add_child(s)
 	$skull.start(randi_range(8,11))
-	enemigos += 1
+
 
 
 func _on_node_anuncio():

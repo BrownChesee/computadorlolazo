@@ -15,7 +15,7 @@ func _on_timer_timeout():
 		emit_signal("perdiste")
 
 
-func _process(delta):
+func _process(_delta):
 	if Loads.sfx == false:
 		if supervivencia < 30 and $Heartbeat.playing == false:
 			$Heartbeat.play()

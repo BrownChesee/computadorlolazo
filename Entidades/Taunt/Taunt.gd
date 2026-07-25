@@ -59,3 +59,4 @@ func _process(_delta):
 			$Sprite2D.frame = 4
 		if wrong or wrong2_the_secuel:
 			emit_signal("not_cool")
+			print_debug("j")

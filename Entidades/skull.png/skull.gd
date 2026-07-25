@@ -11,9 +11,8 @@ func _process(delta):
 			$punch.play()
 		position.y += 100
 	if virus > 3:
+		virus = 0
 		emit_signal("perdiste")
-
-
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	virus = 0
 	queue_free()

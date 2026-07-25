@@ -4,7 +4,8 @@ var canciones = [
 	"res://musica/musica/Fashion Overdrive (From Denshattack!) [ueeOIkBL2Pk].mp3",
 	"res://musica/musica/Finger Lakes (Goldenfriedrich's Theme) - Five Nights at Friedrich's OST [bNIDRvFbS0Y].mp3",
 	"res://musica/musica/Klagmar's Top VGM #4,231 - GLASS - The Rat Race [_Ws5e2ZE4sQ].mp3",
-	"res://musica/musica/Untitled Tag Game OST ｜ SODA STREET [dmKRH8lY8-o].mp3"
+	"res://musica/musica/Untitled Tag Game OST ｜ SODA STREET [dmKRH8lY8-o].mp3",
+	"res://musica/musica/AUD-20260725-WA0001.mp3"
 ]
 var Bus = "New Bus"
 
@@ -22,7 +23,7 @@ func _on_finished():
 
 
 func encontrar_cancion():
-	var cancion = randi_range(0,4)
+	var cancion = randi_range(0,5)
 	stream = load(canciones[cancion])
 	play()
 

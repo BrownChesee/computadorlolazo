@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cmhx5j4qpbsk3"]
+[gd_scene load_steps=39 format=3 uid="uid://cmhx5j4qpbsk3"]
 
 [ext_resource type="Script" path="res://title/title.gd" id="1_4noei"]
 [ext_resource type="Texture2D" uid="uid://b57espwoncns3" path="res://title/title.png" id="1_sma4l"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bxanwijl47be6" path="res://title/Sprite-button.png" id="4_whw3m"]
 [ext_resource type="Texture2D" uid="uid://tslws8nmkpnd" path="res://title/Sprite-music1.png" id="5_ay1l5"]
 [ext_resource type="Texture2D" uid="uid://b4767dhmhm4r6" path="res://title/Sprite-sound1.png" id="6_k0r26"]
+[ext_resource type="FontFile" uid="uid://chmeirxsivunu" path="res://title/VCR_OSD_MONO_1.001.ttf" id="7_h0npr"]
+[ext_resource type="AudioStream" uid="uid://76pfvv1qqxng" path="res://title/Montag (Title Screen) - Five Nights at Friedrich's OST.mp3" id="8_k50eh"]
 
 [sub_resource type="Gradient" id="Gradient_5th6h"]
 offsets = PackedFloat32Array(1)
@@ -52,6 +54,54 @@ _data = {
 "color": SubResource("Animation_imhcf")
 }
 
+[sub_resource type="Animation" id="Animation_7gg4j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_guuip"]
+resource_name = "fade_out"
+length = 16.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 8, 16),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7dep8"]
+_data = {
+"RESET": SubResource("Animation_7gg4j"),
+"fade_out": SubResource("Animation_guuip")
+}
+
+[sub_resource type="Gradient" id="Gradient_dc6n5"]
+colors = PackedColorArray(0, 0, 0, 0.392157, 1, 1, 1, 0.392157)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xdq8o"]
+noise_type = 0
+frequency = 0.8
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_eph1a"]
+color_ramp = SubResource("Gradient_dc6n5")
+noise = SubResource("FastNoiseLite_xdq8o")
+
 [sub_resource type="Animation" id="Animation_u46rl"]
 length = 0.001
 loop_mode = 1
@@ -91,43 +141,6 @@ _data = {
 "spin": SubResource("Animation_uj8q4")
 }
 
-[sub_resource type="Animation" id="Animation_7gg4j"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_guuip"]
-resource_name = "fade_out"
-length = 16.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 8, 16),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7dep8"]
-_data = {
-"RESET": SubResource("Animation_7gg4j"),
-"fade_out": SubResource("Animation_guuip")
-}
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qctt8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7y47c"]
@@ -158,6 +171,11 @@ _data = {
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kdi87"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_7o0ur"]
+font = ExtResource("7_h0npr")
+font_size = 32
+font_color = Color(0.313726, 0, 0.317647, 1)
+
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -183,21 +201,6 @@ libraries = {
 "": SubResource("AnimationLibrary_ul7s6")
 }
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 40.0
-offset_right = 552.0
-offset_bottom = 296.0
-pivot_offset = Vector2(256, 128)
-texture = ExtResource("1_sma4l")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect"]
-autoplay = "spin"
-libraries = {
-"": SubResource("AnimationLibrary_qtjya")
-}
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1440, 540)
 texture = ExtResource("2_w4gh4")
@@ -211,6 +214,35 @@ libraries = {
 [node name="FrameChanger" type="Timer" parent="Sprite2D"]
 wait_time = 8.0
 one_shot = true
+
+[node name="static" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.509804)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_eph1a")
+metadata/_edit_use_anchors_ = true
+
+[node name="statictimer" type="Timer" parent="static"]
+wait_time = 0.2
+autostart = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 552.0
+offset_bottom = 296.0
+pivot_offset = Vector2(256, 128)
+texture = ExtResource("1_sma4l")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect"]
+autoplay = "spin"
+libraries = {
+"": SubResource("AnimationLibrary_qtjya")
+}
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
@@ -270,9 +302,24 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_grury")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kdi87")
 icon = ExtResource("6_k0r26")
 
+[node name="creditos" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -35.0
+offset_right = 465.0
+grow_vertical = 0
+text = "creditos:todo lo hice yo"
+label_settings = SubResource("LabelSettings_7o0ur")
+
+[node name="musica2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_k50eh")
+
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="animation_finished" from="Sprite2D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Sprite2D/FrameChanger" to="." method="_on_frame_changer_timeout"]
+[connection signal="timeout" from="static/statictimer" to="." method="_on_static_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="musica" to="." method="_on_musica_pressed"]

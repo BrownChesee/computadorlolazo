@@ -10,7 +10,7 @@ func _on_timer_timeout():
 	$Sprite2D/AnimationPlayer.play("fade_out")
 func _on_frame_changer_timeout():
 	$Sprite2D.frame = randi_range(0,2)
-func _on_animation_player_animation_finished(fade_out):
+func _on_animation_player_animation_finished(_fade_out):
 	$Timer.start()
 func _on_button_pressed():
 	Loads.load_main()
@@ -37,3 +37,13 @@ func _on_sonido_pressed():
 	else:
 		Loads.sfx = false
 		$sonido.icon = load(boton_sfxs)
+func _on_static_timeout():
+	$static.texture.noise.seed = randi_range(1,8)
+func _process(delta):
+	if Loads.mutted == true:
+		$musica2.volume_db = -999
+	else:
+		$musica2.volume_db = 0
+
+	if $musica2.playing == false:
+		$musica2.play()
